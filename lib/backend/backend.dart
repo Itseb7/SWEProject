@@ -22,6 +22,7 @@ import 'schema/cart_record.dart';
 import 'schema/user_deatils_record.dart';
 import 'schema/userdeatilss_record.dart';
 import 'schema/cartt_record.dart';
+import 'schema/databasevariable_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -47,6 +48,7 @@ export 'schema/cart_record.dart';
 export 'schema/user_deatils_record.dart';
 export 'schema/userdeatilss_record.dart';
 export 'schema/cartt_record.dart';
+export 'schema/databasevariable_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -672,6 +674,43 @@ Future<List<CarttRecord>> queryCarttRecordOnce({
     queryCollectionOnce(
       CarttRecord.collection,
       CarttRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query DatabasevariableRecords (as a Stream and as a Future).
+Future<int> queryDatabasevariableRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      DatabasevariableRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<DatabasevariableRecord>> queryDatabasevariableRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      DatabasevariableRecord.collection,
+      DatabasevariableRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<DatabasevariableRecord>> queryDatabasevariableRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      DatabasevariableRecord.collection,
+      DatabasevariableRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
